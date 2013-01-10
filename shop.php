@@ -15,9 +15,20 @@ $folderPath = $_SERVER['SCRIPT_NAME'];
 
 $backUrl = 'http://'.$_SERVER['HTTP_HOST'].$folderPath.'/shop-result.php';
 
+echo '<html>';
+echo '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>';
+echo '<body>';
+echo OnGamezAPI::getHtmlHeader($source,$userId);
+echo '<div style="padding:20px;">';
+
 echo 'Links to shop:
 	<a href="'.OnGamezAPI::getUrlShopCoins( $source, $userId, 1, $backUrl ).'">buy 1 coin</a>
 	<a href="'.OnGamezAPI::getUrlShopCoins( $source, $userId, 10, $backUrl ).'">buy 10 coins</a>
 	<a href="'.OnGamezAPI::getUrlShopCoins( $source, $userId, 100, $backUrl ).'">buy 100 coins</a>
 	<a href="'.OnGamezAPI::getUrlShopCoins( $source, $userId, 1000, $backUrl ).'">buy 1000 coins</a>
 ';
+
+echo '</div>';
+echo OnGamezAPI::getHtmlFooter($source,$userId);
+echo '</body>';
+echo '</html>';

@@ -34,15 +34,28 @@ if( $result->status=='ERROR' )
 	die();
 }
 
-
-
-echo "Validation success! User info:";
-var_dump($result);
-echo "<hr />";
-
+//------------------------------------------------------------------------------
 // Save required data in session for future usage
+
 $_SESSION['OnGamezData.source'] = $source;
 $_SESSION['OnGamezData.uid'] = $userId;
 
-// Go to next demo page
-echo "<a href='shop.php'>Go to shop page</a>";
+//------------------------------------------------------------------------------
+
+echo '<html>';
+echo '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>';
+echo '<body>';
+echo OnGamezAPI::getHtmlHeader($source,$userId);
+echo '<div style="padding:20px;">';
+
+	echo "Validation success! User info:";
+	var_dump($result);
+	echo "<hr />";
+
+	// Go to next demo page
+	echo "<a href='shop.php'>Go to shop page</a>";
+	
+echo '</div>';
+echo OnGamezAPI::getHtmlFooter($source,$userId);
+echo '</body>';
+echo '</html>';
