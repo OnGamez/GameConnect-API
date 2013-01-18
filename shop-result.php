@@ -1,7 +1,26 @@
 <?php
 // This is 3rd script
 
+session_start();
+
 include 'ongamez/ongamez-api.php';
+
+$source = $_SESSION['OnGamezData.source'];
+$userId = $_SESSION['OnGamezData.uid'];
+
+// Require to reset cache to load data with new values.
+// For example: show new count of coins left.
+OnGamezAPI::resetHeaders( $source, $userId );
+
+//------------------------------------------------------------------------------
+
+echo '<html>';
+echo '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>';
+echo '<body>';
+echo OnGamezAPI::getHtmlHeader($source,$userId);
+echo '<div style="padding:20px;">';
+
+//------------------------------------------------------------------------------
 
 $status = $_GET['status'];
 echo "Complete with status: {$status}<hr />";
@@ -42,3 +61,10 @@ elseif( $status == 'failed' )
 {
 	// Something went wrong on server-side
 }
+
+//------------------------------------------------------------------------------
+
+echo '</div>';
+echo OnGamezAPI::getHtmlFooter($source,$userId);
+echo '</body>';
+echo '</html>';
